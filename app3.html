@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinica</title>
+</head>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+  .container {
+    background:#adcff7;
+    margin-top: 3%;
+  }
+  .container_2 {
+    background: #d1d3f3;
+    margin-top: 20px;
+    width: 40%;
+    margin-left: 8%;
+  }
+  .container_3 {
+
+    background: #d1d3f3;
+    margin-top: 5%;
+    width: 100%;
+    margin-left: 0%;
+  }
+
+  table {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid #44475C;
+    margin: 0.1% 0.1% 0% 0.1%;
+  }
+
+  table th {
+    text-transform: uppercase;
+    text-align: center;
+    background: #44475C;
+    color: #FFF;
+    padding: 0%;
+    min-width: 33%;
+  }
+
+  table td {
+    text-align: center;
+    padding: 0%;
+    border-right: 3px solid #7D82A8;
+  }
+
+  table td:last-child {
+    border-right: none;
+  }
+
+  table tbody tr:nth-child(2n) td {
+    background: #D4D8F9;
+  }
+  body{
+    background: #adcff7;
+  }
+  button{
+    width: 100%;
+  }
+</style>
+
+<body>
+  <div id="app2">
+    <div class="container_2">
+  <header style=
+    "width: auto;
+    margin-left: 5%;">
+   <h1>AMPES</h1>
+  </header>
+    </div>
+    <div class="container">
+      <div class="container_3">
+      <button @click="GetforAxios" class="btn btn-primary">
+        Actualizar
+      </button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+
+            <th>Ubicacion</th>
+            <th>Sector</th>
+            <th>Camas libres</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="Dato in Datos">
+            <td>{{Dato.ubic_nombre}}</td>
+            <td>{{Dato.sec_nombre}}</td>
+            <td>{{Dato.camas_libres}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="app3.js"></script>
+</body>
+
+</html>
