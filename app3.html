@@ -19,15 +19,17 @@
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <style>
   .container {
-    background:#adcff7;
+    background: #adcff7;
     margin-top: 3%;
   }
+
   .container_2 {
-    background: #d1d3f3;
+    background: #adcff7;
     margin-top: 20px;
-    width: 40%;
+    width: 25%;
     margin-left: 8%;
   }
+
   .container_3 {
 
     background: #adcff7;
@@ -66,10 +68,18 @@
   table tbody tr:nth-child(2n) td {
     background: #D4D8F9;
   }
-  body{
+
+  body {
     background: #adcff7;
+
+
   }
-  button{
+
+  body.bg-light {
+    background-color: #adcff7;
+  }
+
+  button {
     width: 100%;
     margin-bottom: 1%;
   }
@@ -78,36 +88,71 @@
 <body>
   <div id="app2">
     <div class="container_2">
-  <header style=
-    "width: auto;
-    margin-left: 5%;">
-   <h1>AMPES</h1>
-  </header>
+      <header style="margin-left: 10%;">
+        <img src="Imagenes/clinica esperanza logo.jpg" style="width: 70%;" />
+      </header>
     </div>
     <div class="container">
       <div class="container_3">
-      <button @click="GetforAxios" class="btn btn-primary">
-        Actualizar
-      </button>
+        <button @click="GetforAxios()" class="btn btn-primary">
+          Actualizar
+        </button>
       </div>
       <table>
         <thead>
           <tr>
 
-            <th>Ubicacion</th>
+            <th>Clinica Centro</th>
             <th>Sector</th>
             <th>Camas libres</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="Dato in Datos">
+          <tr v-for="Dato in DatosCentro">
             <td>{{Dato.ubic_nombre}}</td>
             <td>{{Dato.sec_nombre}}</td>
-            <td>{{Dato.camas_libres}}</td>
+            <td>{{Dato.camaslibres}}</td>
           </tr>
         </tbody>
       </table>
+      <table>
+        <thead>
+          <tr>
+
+            <th>Clinica Norte</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="Dato in DatosNorte">
+            <td>{{Dato.ubic_nombre}}</td>
+            <td>{{Dato.sec_nombre}}</td>
+            <td>{{Dato.camaslibres}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+
+            <th>Internacion domiciliara</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="Dato in DatosDomiocilio">
+            <td>{{Dato.ubic_nombre}}</td>
+            <td>{{Dato.sec_nombre}}</td>
+            <td>{{Dato.camaslibres}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button disabled @click="" class="btn btn-primary">
+        Total de camas libres : "{{CamasLiresTotal}}"
     </div>
+    </button>
   </div>
   <script src="app3.js"></script>
 </body>
