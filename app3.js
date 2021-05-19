@@ -5,10 +5,13 @@ new Vue({
         Datos: [],
         DatosCentro:[],
         DatosNorte:[],
-        DatosDomiocilio:[],
+        DatosDomicilio:[],
         loading: true,
         errored: false,
         CamasLiresTotal:0,
+        CamasLibresCentro:0,
+        CamasLibresNorte:0,
+        CamasLibresDomicilio:0,
       }
     },
     SeñalarTabla () {
@@ -47,6 +50,11 @@ new Vue({
         })
         this.DatosCentro = NewArray;
         // console.log("DATOS CENTRO",this.DatosCentro);
+        let CamasArray = 0;
+        for(let i=0; i < this.DatosCentro.length; i++){
+          CamasArray = CamasArray + this.DatosCentro[i].camaslibres;
+          this.CamasLibresCentro = CamasArray;  
+        }
 
       },
       ContructorDatosNorte(){
@@ -55,6 +63,11 @@ new Vue({
         })
         this.DatosNorte = NewArray;
         // console.log("Norte",this.DatosNorte);
+        let CamasArray = 0;
+        for(let i=0; i < this.DatosNorte.length; i++){
+          CamasArray = CamasArray + this.DatosNorte[i].camaslibres;
+          this.CamasLibresNorte = CamasArray;  
+        }
       },
       ContructorDatosDomicilio(){
         let NewArray = this.Datos.filter(DatosDomiocilio => {
@@ -62,6 +75,11 @@ new Vue({
         })
         this.DatosDomiocilio = NewArray;
         // console.log("DATOS ais",this.DatosDomiocilio);
+        let CamasArray = 0;
+        for(let i=0; i < this.DatosDomiocilio.length; i++){
+          CamasArray = CamasArray + this.DatosDomiocilio[i].camaslibres;
+          this.CamasLibresDomicilio = CamasArray;  
+        }
       },
     },
     created () {

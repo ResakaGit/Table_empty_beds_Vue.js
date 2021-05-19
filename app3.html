@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clinica</title>
 </head>
-<script src="node_modules/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -115,6 +115,9 @@
           </tr>
         </tbody>
       </table>
+      <button disabled @click="" class="btn btn-primary">
+        Total de camas libres clinica Centro: "{{CamasLibresCentro}}"
+      </button>
       <table>
         <thead>
           <tr>
@@ -132,17 +135,19 @@
           </tr>
         </tbody>
       </table>
+      <button disabled @click="" class="btn btn-primary">
+        Total de camas libres clinica Norte: "{{CamasLibresNorte}}"
+      </button>
       <table>
         <thead>
           <tr>
-
             <th>Internacion domiciliara</th>
             <th></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="Dato in DatosDomiocilio">
+          <tr v-for="Dato in DatosDomicilio">
             <td>{{Dato.ubic_nombre}}</td>
             <td>{{Dato.sec_nombre}}</td>
             <td>{{Dato.camaslibres}}</td>
@@ -150,9 +155,12 @@
         </tbody>
       </table>
       <button disabled @click="" class="btn btn-primary">
+        Total de camas libres en domicilio: "{{CamasLibresDomicilio}}"
+      </button>
+      <button disabled @click="" class="btn btn-primary">
         Total de camas libres : "{{CamasLiresTotal}}"
+      </button>
     </div>
-    </button>
   </div>
   <script src="app3.js"></script>
 </body>
