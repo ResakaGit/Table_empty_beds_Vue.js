@@ -6,25 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clinica</title>
 </head>
+<!-- import vue -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- import axios -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- import CSS -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- import JavaScript lang Es -->
+<script src="https://unpkg.com/element-ui"></script>
+<script src="https://unpkg.com/element-ui/lib/umd/locale/es.js"></script>
+<!-- import lang -->
+<script>
+  ELEMENT.locale(ELEMENT.lang.es)
+</script>
+
+
 <style>
   .container {
-    background: #adcff7;
+    background: #ffffff;
     margin-top: 3%;
   }
 
   .container_2 {
-    background: #adcff7;
+    background: #ffffff;
     margin-top: 5%;
     width: 45%;
     margin-left: 8%;
@@ -32,33 +36,10 @@
 
   .container_3 {
 
-    background: #adcff7;
+    background: #ffffff;
     margin-top: 5%;
     width: 100%;
     margin-bottom: 0%;
-  }
-
-  table {
-    font-family: 'Open Sans', sans-serif;
-    width: 100%;
-    border-collapse: collapse;
-    border: 3px solid #44475C;
-    margin: 0.1% 0.1% 0% 0.1%;
-  }
-
-  table th {
-    text-transform: uppercase;
-    text-align: center;
-    background: #44475C;
-    color: #FFF;
-    padding: 0%;
-    min-width: 33%;
-  }
-
-  table td {
-    text-align: center;
-    padding: 0%;
-    border-right: 3px solid #7D82A8;
   }
 
   table td:last-child {
@@ -66,17 +47,18 @@
   }
 
   table tbody tr:nth-child(2n) td {
-    background: #D4D8F9;
+    background: #ffffff;
   }
 
   body {
-    background: #adcff7;
+    background: #ffffff;
+    /* font-size: xx-large; */
 
 
   }
 
   body.bg-light {
-    background-color: #adcff7;
+    background-color: #ffffff;
   }
 
   button {
@@ -93,73 +75,83 @@
       </header>
     </div>
     <div class="container">
-      <div class="container_3">
-        <button @click="GetforAxios()" class="btn btn-primary">
-          Actualizar
-        </button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-
-            <th>Clinica Centro</th>
-            <th>Sector</th>
-            <th>Camas libres</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="Dato in DatosCentro">
-            <td>{{Dato.ubic_nombre}}</td>
-            <td>{{Dato.sec_nombre}}</td>
-            <td>{{Dato.camaslibres}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <button disabled @click="" class="btn btn-primary">
-        Total de camas libres clinica Centro: "{{CamasLibresCentro}}"
-      </button>
-      <table>
-        <thead>
-          <tr>
-
-            <th>Clinica Norte</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="Dato in DatosNorte">
-            <td>{{Dato.ubic_nombre}}</td>
-            <td>{{Dato.sec_nombre}}</td>
-            <td>{{Dato.camaslibres}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <button disabled @click="" class="btn btn-primary">
-        Total de camas libres clinica Norte: "{{CamasLibresNorte}}"
-      </button>
-      <table>
-        <thead>
-          <tr>
-            <th>Internacion domiciliara</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="Dato in DatosDomicilio">
-            <td>{{Dato.ubic_nombre}}</td>
-            <td>{{Dato.sec_nombre}}</td>
-            <td>{{Dato.camaslibres}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <button disabled @click="" class="btn btn-primary">
+      <el-button @click="GetforAxios()" type="primary"> Actualizar</el-button>
+      <el-table :data="DatosCentro" style="width: 100%" size="mini">
+        <el-table-column>
+          <template slot="header" slot-scope="scope">
+            <el-collapse v-model="activeNames" @change="handleChange">
+              <el-collapse-item title="Clinica Centro" name="1">
+                <!-- Tabla Etiqueta -->
+                <el-table :data="DatosCentroDiag" style="width: 100%" size="mini">
+                  <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                  </el-table-column>
+                  <el-table-column prop="Sec_Nombre" label="Sector" width="105" align="center">
+                  </el-table-column>
+                  <el-table-column prop="Me_Diagnostico" label="Diagnóstico" width="95" align="center">
+                  </el-table-column>
+                </el-table>
+              </el-collapse-item>
+            </el-collapse>
+          </template>
+          <el-table-column prop="ubic_nombre" label="Ubicacion" align="center">
+          </el-table-column>
+          <el-table-column prop="sec_nombre" label="Sector" align="center">
+          </el-table-column>
+          <el-table-column prop="camaslibres" label="Camas libres" width="88" align="center">
+          </el-table-column>
+        </el-table-column>
+      </el-table>
+      <br>
+      <!-- tabla 2 -->
+      <el-table :data="DatosNorte" style="width: 100%" size="mini">
+        <el-table-column>
+          <template slot="header" slot-scope="scope">
+            <el-collapse v-model="activeNames" @change="handleChange">
+              <el-collapse-item title="Clinica Norte" name="2">
+                <!-- Tabla Norte en Etiqueta -->
+                <el-table :data="DatosNorteDiag" style="width: 100%" size="mini">
+                  <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                  </el-table-column>
+                  <el-table-column prop="Sec_Nombre" label="Sector" align="center">
+                  </el-table-column>
+                  <el-table-column prop="Me_Diagnostico" label="Diagnóstico" width="88" align="center">
+                  </el-table-column>
+                </el-table>
+              </el-collapse-item>
+            </el-collapse>
+          </template>
+          <el-table-column prop="ubic_nombre" label="Ubicacion" align="center">
+          </el-table-column>
+          <el-table-column prop="sec_nombre" label="Sector" align="center">
+          </el-table-column>
+          <el-table-column prop="camaslibres" label="Camas libres" width="88" align="center">
+          </el-table-column>
+        </el-table-column>
+      </el-table>
+      <br>
+      <!-- Tabla 3  -->
+      <el-table :data="DatosDomiocilio" style="width: 100%" size="mini">
+        <el-table-column>
+          <template slot="header" slot-scope="scope">
+            <el-collapse v-model="activeNames" @change="handleChange">
+              <el-collapse-item title="Domicilio" name="3">
+              </el-collapse-item>
+            </el-collapse>
+          </template>
+          <el-table-column prop="ubic_nombre" label="Ubicacion" align="center">
+          </el-table-column>
+          <el-table-column prop="sec_nombre" label="Sector" align="center">
+          </el-table-column>
+          <el-table-column prop="camaslibres" label="Camas libres" width="88" align="center">
+          </el-table-column>
+        </el-table-column>
+      </el-table>
+      <el-button disabled @click="" class="btn btn-primary">
         Total de camas libres en domicilio: "{{CamasLibresDomicilio}}"
-      </button>
-      <button disabled @click="" class="btn btn-primary">
+      </el-button>
+      <el-button disabled @click="">
         Total de camas libres : "{{CamasLiresTotal}}"
-      </button>
+      </el-button>
     </div>
   </div>
   <script src="app3.js"></script>
