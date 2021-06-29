@@ -6,6 +6,12 @@ new Vue({
       DatosNew: [],
       DatosNorteDiag: [],
       DatosCentroDiag: [],
+      DatosCentroPrimerPiso: [],
+      DatosCentroSegundoPiso: [],
+      DatosCentroUTI: [],
+      DatosCentroCirugiaM: [],
+      DatosNorteSectorOeste: [],
+      DatosNorteAislamiento: [],
 
       //Tablas principales
       Datos: [],
@@ -58,8 +64,13 @@ new Vue({
         .then(response => {
           this.DatosNew = response.data,
             // console.log("Datos Nuevos del get", this.DatosNew)
-            this.ContructorDatosNorteDiagnosticados();
-          this.ContructorDatosCentroDiagnosticados();
+            this.ContructorDatosDomi()
+          this.ContructorDatosCentroPrimerPiso();
+          this.ContructorDatosCentroSegundopiso();
+          this.ContructorDatosCentroUTI();
+          this.ContructorDatosCentroCirugiaM();
+          this.ContructorDatosNorteAislamiento();
+          this.ContructorDatosNorteSectorOeste();
         })
     },
     GetforAxiosCamas() {
@@ -82,20 +93,65 @@ new Vue({
         .finally(() => this.loading = false);
 
     },
-    ContructorDatosNorteDiagnosticados() {
+    ContructorDatosNorteAislamiento() {
       let NewArray = this.DatosNew.filter(ClinicaCentro => {
-        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA NORTE                           ";
+        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA NORTE                           " && ClinicaCentro.Sec_Nombre === "AISLAMIENTO                                       ";
       })
-      this.DatosNorteDiag = NewArray;
+      this.DatosNorteAislamiento = NewArray;
       // console.log("DATOS new Norte ", this.DatosNorteDiag);
     },
-    ContructorDatosCentroDiagnosticados() {
+    ContructorDatosNorteSectorOeste() {
       let NewArray = this.DatosNew.filter(ClinicaCentro => {
-        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA CENTRO                          ";
+        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA NORTE                           " && ClinicaCentro.Sec_Nombre === "SECTOR OESTE                                      ";
       })
-      this.DatosCentroDiag = NewArray;
-      // console.log("DATOS new Centro ", this.DatosCentroDiag);
+      this.DatosNorteSectorOeste = NewArray;
+      // console.log("DATOS new Norte ", this.DatosNorteDiag);
     },
+
+
+    ContructorDatosDomi() {
+      let NewArray = this.DatosNew.filter(ClinicaCentro => {
+        return ClinicaCentro.Ubic_nombre === "INTERNACION DOMICILIARIA                          ";
+      })
+      this.DatosDomisi = NewArray;
+      console.log("DATOS new Norte ", this.DatosDomisi);
+    },
+
+
+
+
+
+
+
+    ContructorDatosCentroPrimerPiso() {
+      let NewArray = this.DatosNew.filter(ClinicaCentro => {
+        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA CENTRO                          " && ClinicaCentro.Sec_Nombre === "PRIMER PISO                                       ";
+      })
+      this.DatosCentroPrimerPiso = NewArray;
+      // console.log("DATOS new Centro ", this.DatosCentroPrimerPiso);
+    },
+    ContructorDatosCentroSegundopiso() {
+      let NewArray = this.DatosNew.filter(ClinicaCentro => {
+        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA CENTRO                          " && ClinicaCentro.Sec_Nombre === "SEGUNDO PISO                                      ";
+      })
+      this.DatosCentroSegundoPiso = NewArray;
+      // console.log("DATOS new Centro ", this.DatosCentroPrimerPiso);
+    },
+    ContructorDatosCentroUTI() {
+      let NewArray = this.DatosNew.filter(ClinicaCentro => {
+        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA CENTRO                          " && ClinicaCentro.Sec_Nombre === "UTI                                               ";
+      })
+      this.DatosCentroUTI = NewArray;
+      // console.log("DATOS new Centro ", this.DatosCentroPrimerPiso);
+    },
+    ContructorDatosCentroCirugiaM() {
+      let NewArray = this.DatosNew.filter(ClinicaCentro => {
+        return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA CENTRO                          " && ClinicaCentro.Sec_Nombre === "CIRUGIAS MENORES                                  ";
+      })
+      this.DatosCentroCirugiaM = NewArray;
+      // console.log("DATOS new Centro ", this.DatosCentroPrimerPiso);
+    },
+
 
 
 

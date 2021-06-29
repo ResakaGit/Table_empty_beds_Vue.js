@@ -81,15 +81,80 @@
           <template slot="header" slot-scope="scope">
             <el-collapse v-model="activeNames" @change="handleChange">
               <el-collapse-item title="Clinica Centro" name="1">
-                <!-- Tabla Etiqueta -->
-                <el-table :data="DatosCentroDiag" style="width: 100%" size="mini">
-                  <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                  </el-table-column>
-                  <el-table-column prop="Sec_Nombre" label="Sector" width="105" align="center">
-                  </el-table-column>
-                  <el-table-column prop="Me_Diagnostico" label="Diagnóstico" width="95" align="center">
-                  </el-table-column>
-                </el-table>
+                <el-collapse v-model="activeNames" @change="handleChange">
+                  <el-collapse-item title="Primer Piso" name="piso 1">
+                    <!-- Tabla Etiqueta Primer piso -->
+                    <el-table :data="DatosCentroPrimerPiso" style="width: 100%" size="mini">
+                      <el-table-column type="expand">
+                        <template slot-scope="props">
+                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
+
+                        </template>
+                      </el-table-column>
+                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                      </el-table-column>
+                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
+                      </el-table-column>
+                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
+                      </el-table-column>
+                    </el-table>
+                  </el-collapse-item>
+
+                  <el-collapse-item title="Segundo Piso" name="piso 2">
+                    <!-- Tabla Etiqueta Segundo Piso -->
+                    <el-table :data="DatosCentroSegundoPiso" style="width: 100%" size="mini">
+                      <el-table-column type="expand">
+                        <template slot-scope="props">
+                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
+
+                        </template>
+                      </el-table-column>
+                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                      </el-table-column>
+                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
+                      </el-table-column>
+                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
+                      </el-table-column>
+                    </el-table>
+                  </el-collapse-item>
+
+                  <el-collapse-item title="UTI" name="UTI">
+                    <!-- Tabla Etiqueta UTI -->
+                    <el-table :data="DatosCentroUTI" style="width: 100%" size="mini">
+                      <el-table-column type="expand">
+                        <template slot-scope="props">
+                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
+
+                        </template>
+                      </el-table-column>
+                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                      </el-table-column>
+                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
+                      </el-table-column>
+                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
+                      </el-table-column>
+                    </el-table>
+                  </el-collapse-item>
+
+                  <el-collapse-item title="Cirugias menores" name="Cirugias menores">
+                    <!-- Tabla Etiqueta Cirugias menores -->
+                    <el-table :data="DatosCentroCirugiaM" style="width: 100%" size="mini">
+                      <el-table-column type="expand">
+                        <template slot-scope="props">
+                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
+
+                        </template>
+                      </el-table-column>
+                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                      </el-table-column>
+                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
+                      </el-table-column>
+                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
+                      </el-table-column>
+                    </el-table>
+                  </el-collapse-item>
+
+                </el-collapse>
               </el-collapse-item>
             </el-collapse>
           </template>
@@ -108,15 +173,45 @@
           <template slot="header" slot-scope="scope">
             <el-collapse v-model="activeNames" @change="handleChange">
               <el-collapse-item title="Clinica Norte" name="2">
-                <!-- Tabla Norte en Etiqueta -->
-                <el-table :data="DatosNorteDiag" style="width: 100%" size="mini">
-                  <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                  </el-table-column>
-                  <el-table-column prop="Sec_Nombre" label="Sector" align="center">
-                  </el-table-column>
-                  <el-table-column prop="Me_Diagnostico" label="Diagnóstico" width="88" align="center">
-                  </el-table-column>
-                </el-table>
+                <el-collapse v-model="activeNames" @change="handleChange">
+                  <el-collapse-item title="Aislamiento" name="Aislamiento">
+                    <!-- Tabla Norte en Etiqueta -->
+                    <!-- Tabla Etiqueta Aislamiento -->
+                    <el-table :data="DatosNorteAislamiento" style="width: 100%" size="mini">
+                      <el-table-column type="expand">
+                        <template slot-scope="props">
+                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
+
+                        </template>
+                      </el-table-column>
+                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                      </el-table-column>
+                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
+                      </el-table-column>
+                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
+                      </el-table-column>
+
+                    </el-table>
+                  </el-collapse-item>
+
+                  <el-collapse-item title="Sector Oeste" name="Sector Oeste">
+                    <!-- Tabla Etiqueta Sector Oeste -->
+                    <el-table :data="DatosNorteSectorOeste" style="width: 100%" size="mini">
+                      <el-table-column type="expand">
+                        <template slot-scope="props">
+                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
+
+                        </template>
+                      </el-table-column>
+                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                      </el-table-column>
+                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
+                      </el-table-column>
+                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
+                      </el-table-column>
+                    </el-table>
+                  </el-collapse-item>
+                </el-collapse>
               </el-collapse-item>
             </el-collapse>
           </template>
@@ -135,6 +230,22 @@
           <template slot="header" slot-scope="scope">
             <el-collapse v-model="activeNames" @change="handleChange">
               <el-collapse-item title="Domicilio" name="3">
+                <!-- Tabla Norte en Etiqueta -->
+                <!-- Tabla Etiqueta Aislamiento -->
+                <el-table :data="DatosDomisi" style="width: 100%" size="mini">
+                  <el-table-column type="expand">
+                    <template slot-scope="props">
+                      <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
+
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="fic_nombre" label="Nombre" align="center">
+                  </el-table-column>
+                  <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
+                  </el-table-column>
+                  <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
+                  </el-table-column>
+                </el-table>
               </el-collapse-item>
             </el-collapse>
           </template>
