@@ -64,7 +64,8 @@ new Vue({
         .then(response => {
           this.DatosNew = response.data,
             // console.log("Datos Nuevos del get", this.DatosNew)
-            this.ContructorDatosDomi()
+            this.FiltroPorSector("CLÍNICA ESPERANZA NORTE                           ", "AISLAMIENTO                                       ", this.DatosNorteAislamiento);
+          this.ContructorDatosDomi()
           this.ContructorDatosCentroPrimerPiso();
           this.ContructorDatosCentroSegundopiso();
           this.ContructorDatosCentroUTI();
@@ -93,6 +94,18 @@ new Vue({
         .finally(() => this.loading = false);
 
     },
+    //Filtro Refact
+    FiltroPorSector(ubicacion, sector, tabla) {
+      let NewArray = this.DatosNew.filter(ClinicaCentro => {
+        return ClinicaCentro.Ubic_nombre === ubicacion && ClinicaCentro.Sec_Nombre === sector;
+      })
+      tabla = NewArray;
+      console.log("DATOS new Norte ", tabla);
+    },
+
+
+
+
     ContructorDatosNorteAislamiento() {
       let NewArray = this.DatosNew.filter(ClinicaCentro => {
         return ClinicaCentro.Ubic_nombre === "CLÍNICA ESPERANZA NORTE                           " && ClinicaCentro.Sec_Nombre === "AISLAMIENTO                                       ";
