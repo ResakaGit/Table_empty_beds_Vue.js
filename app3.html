@@ -52,12 +52,12 @@
 
   body {
     background: #ffffff;
-    /* font-size: xx-large; */
 
 
   }
 
   body.bg-light {
+
     background-color: #ffffff;
   }
 
@@ -79,90 +79,42 @@
       <el-table :data="DatosCentro" style="width: 100%" size="mini">
         <el-table-column>
           <template slot="header" slot-scope="scope">
-            <el-collapse v-model="activeNames" @change="handleChange">
+            <el-collapse @change="handleChange">
               <el-collapse-item title="Clinica Centro" name="1">
-                <el-collapse v-model="activeNames" @change="handleChange">
-                  <el-collapse-item title="Primer Piso" name="piso 1">
-                    <!-- Tabla Etiqueta Primer piso -->
-                    <el-table :data="DatosCentroPrimerPiso" style="width: 100%" size="mini">
-                      <el-table-column type="expand">
-                        <template slot-scope="props">
-                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
-
-                        </template>
-                      </el-table-column>
-                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                      </el-table-column>
-                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
-                      </el-table-column>
-                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
-                      </el-table-column>
-                    </el-table>
-                  </el-collapse-item>
-
-                  <el-collapse-item title="Segundo Piso" name="piso 2">
-                    <!-- Tabla Etiqueta Segundo Piso -->
-                    <el-table :data="DatosCentroSegundoPiso" style="width: 100%" size="mini">
-                      <el-table-column type="expand">
-                        <template slot-scope="props">
-                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
-
-                        </template>
-                      </el-table-column>
-                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                      </el-table-column>
-                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
-                      </el-table-column>
-                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
-                      </el-table-column>
-                    </el-table>
-                  </el-collapse-item>
-
-                  <el-collapse-item title="UTI" name="UTI">
-                    <!-- Tabla Etiqueta UTI -->
-                    <el-table :data="DatosCentroUTI" style="width: 100%" size="mini">
-                      <el-table-column type="expand">
-                        <template slot-scope="props">
-                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
-
-                        </template>
-                      </el-table-column>
-                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                      </el-table-column>
-                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
-                      </el-table-column>
-                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
-                      </el-table-column>
-                    </el-table>
-                  </el-collapse-item>
-
-                  <el-collapse-item title="Cirugias menores" name="Cirugias menores">
-                    <!-- Tabla Etiqueta Cirugias menores -->
-                    <el-table :data="DatosCentroCirugiaM" style="width: 100%" size="mini">
-                      <el-table-column type="expand">
-                        <template slot-scope="props">
-                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
-
-                        </template>
-                      </el-table-column>
-                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                      </el-table-column>
-                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
-                      </el-table-column>
-                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
-                      </el-table-column>
-                    </el-table>
-                  </el-collapse-item>
-
-                </el-collapse>
               </el-collapse-item>
             </el-collapse>
           </template>
-          <el-table-column prop="ubic_nombre" label="Ubicacion" align="center">
-          </el-table-column>
           <el-table-column prop="sec_nombre" label="Sector" align="center">
           </el-table-column>
-          <el-table-column prop="camaslibres" label="Camas libres" width="88" align="center">
+          <el-table-column prop="camaslibres" label="Cam libres" width="80" align="center">
+          </el-table-column>
+          <el-table-column prop="" width="80" label="Ocupadas" align="center">
+
+            <!-- table for Diag -->
+            <template slot-scope="scope">
+              <el-popover trigger="click" placement="bottom">
+                <el-table :data="datosTag" size="mini" height="250">
+                  <el-table-column type="expand">
+                    <template slot-scope="Diagnostico">
+                      <p>Diagnostico: {{ Diagnostico.row.Me_Diagnostico }}</p>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="nombre" label="Nombre" align="center">
+                  </el-table-column>
+                  <el-table-column prop="fic_sexo" label="Sexo" align="center">
+                  </el-table-column>
+                  <el-table-column prop="Hab_Nombre" label="habitacion" align="center">
+                  </el-table-column>
+                </el-table>
+                <div slot="reference" class="name-wrapper">
+                  <el-tag size="medium" @click=buillTablasForTag(scope.row.ubic_nombre,scope.row.sec_nombre)>
+                    {{scope.row.total_camas-scope.row.camaslibres}} </el-tag>
+                </div>
+              </el-popover>
+            </template>
+            <!---->
+          </el-table-column>
+          <el-table-column prop="total_camas" label="Total Cam" width="80" align="center">
           </el-table-column>
         </el-table-column>
       </el-table>
@@ -171,97 +123,50 @@
       <el-table :data="DatosNorte" style="width: 100%" size="mini">
         <el-table-column>
           <template slot="header" slot-scope="scope">
-            <el-collapse v-model="activeNames" @change="handleChange">
+            <el-collapse @change="handleChange">
               <el-collapse-item title="Clinica Norte" name="2">
-                <el-collapse v-model="activeNames" @change="handleChange">
-                  <el-collapse-item title="Aislamiento" name="Aislamiento">
-                    <!-- Tabla Norte en Etiqueta -->
-                    <!-- Tabla Etiqueta Aislamiento -->
-                    <el-table :data="DatosNorteAislamiento" style="width: 100%" size="mini">
-                      <el-table-column type="expand">
-                        <template slot-scope="props">
-                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
-
-                        </template>
-                      </el-table-column>
-                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                      </el-table-column>
-                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
-                      </el-table-column>
-                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
-                      </el-table-column>
-
-                    </el-table>
-                  </el-collapse-item>
-
-                  <el-collapse-item title="Sector Oeste" name="Sector Oeste">
-                    <!-- Tabla Etiqueta Sector Oeste -->
-                    <el-table :data="DatosNorteSectorOeste" style="width: 100%" size="mini">
-                      <el-table-column type="expand">
-                        <template slot-scope="props">
-                          <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
-
-                        </template>
-                      </el-table-column>
-                      <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                      </el-table-column>
-                      <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
-                      </el-table-column>
-                      <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
-                      </el-table-column>
-                    </el-table>
-                  </el-collapse-item>
-                </el-collapse>
               </el-collapse-item>
             </el-collapse>
           </template>
-          <el-table-column prop="ubic_nombre" label="Ubicacion" align="center">
-          </el-table-column>
           <el-table-column prop="sec_nombre" label="Sector" align="center">
           </el-table-column>
-          <el-table-column prop="camaslibres" label="Camas libres" width="88" align="center">
+          <el-table-column prop="camaslibres" label="Cam libres" width="80" align="center">
+          </el-table-column>
+          <el-table-column prop="" width="80" label="Ocupadas" align="center">
+
+            <!-- table for Diag -->
+            <template slot-scope="scope">
+              <el-popover trigger="click" placement="bottom">
+                <el-table :data="datosTag" size="mini" height="250">
+                  <el-table-column type="expand">
+                    <template slot-scope="Diagnostico">
+                      <p>Diagnostico: {{ Diagnostico.row.Me_Diagnostico}}</p>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="nombre" label="Nombre" align="center">
+                  </el-table-column>
+                  <el-table-column prop="fic_sexo" label="Sexo" align="center">
+                  </el-table-column>
+                  <el-table-column prop="Hab_Nombre" label="habitacion" align="center">
+                  </el-table-column>
+                </el-table>
+                <div slot="reference" class="name-wrapper">
+                  <el-tag size="medium" @click=buillTablasForTag(scope.row.ubic_nombre,scope.row.sec_nombre)>{{
+                    scope.row.total_camas-scope.row.camaslibres }}</el-tag>
+                </div>
+              </el-popover>
+            </template>
+            <!---->
+
+          </el-table-column>
+          <el-table-column prop="total_camas" label="Total Cam" width="80" align="center">
           </el-table-column>
         </el-table-column>
       </el-table>
       <br>
       <!-- Tabla 3  -->
-      <el-table :data="DatosDomiocilio" style="width: 100%" size="mini">
-        <el-table-column>
-          <template slot="header" slot-scope="scope">
-            <el-collapse v-model="activeNames" @change="handleChange">
-              <el-collapse-item title="Domicilio" name="3">
-                <!-- Tabla Norte en Etiqueta -->
-                <!-- Tabla Etiqueta Aislamiento -->
-                <el-table :data="DatosDomisi" style="width: 100%" size="mini">
-                  <el-table-column type="expand">
-                    <template slot-scope="props">
-                      <p>Diagnostico: {{ props.row.Me_Diagnostico }}</p>
-
-                    </template>
-                  </el-table-column>
-                  <el-table-column prop="fic_nombre" label="Nombre" align="center">
-                  </el-table-column>
-                  <el-table-column prop="fic_sexo" label="Sexo" width="50" align="center">
-                  </el-table-column>
-                  <el-table-column prop="Nombre_Cama" label="habitacion" width="100" align="center">
-                  </el-table-column>
-                </el-table>
-              </el-collapse-item>
-            </el-collapse>
-          </template>
-          <el-table-column prop="ubic_nombre" label="Ubicacion" align="center">
-          </el-table-column>
-          <el-table-column prop="sec_nombre" label="Sector" align="center">
-          </el-table-column>
-          <el-table-column prop="camaslibres" label="Camas libres" width="88" align="center">
-          </el-table-column>
-        </el-table-column>
-      </el-table>
-      <el-button disabled @click="" class="btn btn-primary">
-        Total de camas libres en domicilio: "{{CamasLibresDomicilio}}"
-      </el-button>
       <el-button disabled @click="">
-        Total de camas libres : "{{CamasLiresTotal}}"
+        Total Camas libres : "{{CamasLiresTotal}}"
       </el-button>
     </div>
   </div>
