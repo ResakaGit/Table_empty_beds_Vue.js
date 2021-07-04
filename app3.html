@@ -76,7 +76,8 @@
     </div>
     <div class="container">
       <el-button @click="GetforAxios()" type="primary"> Actualizar</el-button>
-      <el-table :data="DatosCentro" style="width: 100%" size="mini">
+      <!-- Starting primery table -->
+      <el-table :data="DatosCentro" border style="width: 100%" size="mini" show-summary sum-text="Total">
         <el-table-column>
           <template slot="header" slot-scope="scope">
             <el-collapse @change="handleChange">
@@ -86,14 +87,16 @@
           </template>
           <el-table-column prop="sec_nombre" label="Sector" align="center">
           </el-table-column>
-          <el-table-column prop="camaslibres" label="Cam libres" width="80" align="center">
+          <el-table-column prop="total_camas" label="Total Cam" width="80" align="center">
           </el-table-column>
-          <el-table-column prop="" width="80" label="Ocupadas" align="center">
+          <el-table-column prop="camaslibres" label="Disponibles" width="81" align="center">
+          </el-table-column>
+          <el-table-column prop="total_camas-camaslibres" width="80" label="Ocupadas" align="center">
 
             <!-- table for Diag -->
             <template slot-scope="scope">
-              <el-popover trigger="click" placement="bottom">
-                <el-table :data="datosTag" size="mini" height="250">
+              <el-popover trigger="click" placement="bottom" width="350">
+                <el-table :data="datosTag" size="mini" height="400">
                   <el-table-column type="expand">
                     <template slot-scope="Diagnostico">
                       <p>Diagnostico: {{ Diagnostico.row.Me_Diagnostico }}</p>
@@ -114,13 +117,11 @@
             </template>
             <!---->
           </el-table-column>
-          <el-table-column prop="total_camas" label="Total Cam" width="80" align="center">
-          </el-table-column>
         </el-table-column>
       </el-table>
       <br>
       <!-- tabla 2 -->
-      <el-table :data="DatosNorte" style="width: 100%" size="mini">
+      <el-table :data="DatosNorte" style="width: 100%" size="mini" show-summary sum-text="Total">
         <el-table-column>
           <template slot="header" slot-scope="scope">
             <el-collapse @change="handleChange">
@@ -130,14 +131,16 @@
           </template>
           <el-table-column prop="sec_nombre" label="Sector" align="center">
           </el-table-column>
-          <el-table-column prop="camaslibres" label="Cam libres" width="80" align="center">
+          <el-table-column prop="total_camas" label="Total Cam" width="80" align="center">
+          </el-table-column>
+          <el-table-column prop="camaslibres" label="Disponibles" width="81" align="center">
           </el-table-column>
           <el-table-column prop="" width="80" label="Ocupadas" align="center">
 
             <!-- table for Diag -->
             <template slot-scope="scope">
-              <el-popover trigger="click" placement="bottom">
-                <el-table :data="datosTag" size="mini" height="250">
+              <el-popover trigger="click" placement="bottom" width="350">
+                <el-table :data="datosTag" size="mini" height="400">
                   <el-table-column type="expand">
                     <template slot-scope="Diagnostico">
                       <p>Diagnostico: {{ Diagnostico.row.Me_Diagnostico}}</p>
@@ -159,15 +162,8 @@
             <!---->
 
           </el-table-column>
-          <el-table-column prop="total_camas" label="Total Cam" width="80" align="center">
-          </el-table-column>
         </el-table-column>
       </el-table>
-      <br>
-      <!-- Tabla 3  -->
-      <el-button disabled @click="">
-        Total Camas libres : "{{CamasLiresTotal}}"
-      </el-button>
     </div>
   </div>
   <script src="app3.js"></script>
