@@ -59,6 +59,7 @@ new Vue({
         .then(response => {
           this.DatosNew = response.data,
             console.log("Datos Nuevos del get", this.DatosNew)
+
         })
     },
     GetforAxiosCamas() {
@@ -88,7 +89,7 @@ new Vue({
       let NewArray = this.DatosNew.filter(array => {
         return array.Ubic_nombre.trim() === ubicacionClinica.trim() && array.Sec_Nombre.trim() === sectorDiag.trim();
       })
-      console.log("Datos para tabla tag", NewArray);
+      // console.log("Datos para tabla tag", NewArray);
       this.datosTag = NewArray;
 
 

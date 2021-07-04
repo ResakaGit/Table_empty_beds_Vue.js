@@ -81,7 +81,7 @@
       <el-table :data="DatosCentro" border style="width: 100%" size="mini" show-summary sum-text="Total">
         <el-table-column>
           <template slot="header" slot-scope="scope">
-            <el-collapse @change="handleChange">
+            <el-collapse @change="handleChange" disabled>
               <el-collapse-item title="Clinica Centro" name="1">
               </el-collapse-item>
             </el-collapse>
@@ -92,22 +92,27 @@
           </el-table-column>
           <el-table-column prop="camaslibres" label="Disponibles" width="90" align="center">
           </el-table-column>
-          <el-table-column prop="total_camas-camaslibres" width="80" label="Ocupadas" align="center">
+          <el-table-column prop="camas_ocupadas" width="80" label="Ocupadas" align="center">
 
             <!-- table for Diag -->
             <template slot-scope="scope">
-              <el-popover trigger="click" placement="bottom" width="350">
-                <el-table :data="datosTag" size="mini" height="400">
+              <el-popover trigger="click" placement="left" width="350">
+                <el-table :data="datosTag" size="mini" height="250">
                   <el-table-column type="expand">
                     <template slot-scope="Diagnostico">
-                      <p>Diagnostico: {{ Diagnostico.row.Me_Diagnostico }}</p>
+                      <p>Nombre: {{ Diagnostico.row.nombre }}</p>
                     </template>
                   </el-table-column>
-                  <el-table-column prop="nombre" label="Nombre" align="center">
-                  </el-table-column>
-                  <el-table-column prop="fic_sexo" label="Sexo" align="center">
+                  <el-table-column prop="Me_Diagnostico" label="Diagnostico" align="center">
                   </el-table-column>
                   <el-table-column prop="Hab_Nombre" label="habitacion" align="center">
+                  </el-table-column>
+                  <el-table-column prop="fic_sexo" label="Sexo" width="50">
+                    <template slot-scope="sexo">
+                      <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium" type="danger">{{sexo.row.fic_sexo}} </el-tag>
+                      </div>
+                    </template>
                   </el-table-column>
                 </el-table>
                 <div slot="reference" class="name-wrapper">
@@ -125,7 +130,7 @@
       <el-table :data="DatosNorte" style="width: 100%" size="mini" show-summary sum-text="Total">
         <el-table-column>
           <template slot="header" slot-scope="scope">
-            <el-collapse @change="handleChange">
+            <el-collapse @change="handleChange" disabled>
               <el-collapse-item title="Clinica Norte" name="2">
               </el-collapse-item>
             </el-collapse>
@@ -136,22 +141,27 @@
           </el-table-column>
           <el-table-column prop="camaslibres" label="Disponibles" width="90" align="center">
           </el-table-column>
-          <el-table-column prop="" width="80" label="Ocupadas" align="center">
+          <el-table-column prop="camas_ocupadas" width="80" label="Ocupadas" align="center">
 
             <!-- table for Diag -->
             <template slot-scope="scope">
-              <el-popover trigger="click" placement="bottom" width="350">
-                <el-table :data="datosTag" size="mini" height="400">
+              <el-popover trigger="click" placement="left" width="350">
+                <el-table :data="datosTag" size="mini" height="250">
                   <el-table-column type="expand">
                     <template slot-scope="Diagnostico">
-                      <p>Diagnostico: {{ Diagnostico.row.Me_Diagnostico}}</p>
+                      <p>Nombre: {{ Diagnostico.row.nombre}}</p>
                     </template>
                   </el-table-column>
-                  <el-table-column prop="nombre" label="Nombre" align="center">
-                  </el-table-column>
-                  <el-table-column prop="fic_sexo" label="Sexo" align="center">
+                  <el-table-column prop="Me_Diagnostico" label="Diagnostico" align="center">
                   </el-table-column>
                   <el-table-column prop="Hab_Nombre" label="habitacion" align="center">
+                  </el-table-column>
+                  <el-table-column prop="fic_sexo" label="Sexo" width="50">
+                    <template slot-scope="sexo">
+                      <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium" type="danger">{{sexo.row.fic_sexo}} </el-tag>
+                      </div>
+                    </template>
                   </el-table-column>
                 </el-table>
                 <div slot="reference" class="name-wrapper">
