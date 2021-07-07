@@ -35,7 +35,6 @@
   }
 
   .container_3 {
-
     background: #ffffff;
     margin-top: 5%;
     width: 100%;
@@ -53,18 +52,29 @@
   body {
     background: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
-
-
+    font-weight: 600
   }
 
   body.bg-light {
-
     background-color: #ffffff;
   }
 
   button {
     width: 100%;
     margin-bottom: 1%;
+  }
+
+  .el-collapse-item__arrow {
+    display: none;
+  }
+
+  .el-collapse-item__header {
+    font-size: large;
+  }
+
+  .el-table__footer-wrapper {
+    color: red;
+    font-weight: 1000
   }
 </style>
 
@@ -82,7 +92,7 @@
         <el-table-column>
           <template slot="header" slot-scope="scope">
             <el-collapse @change="handleChange" disabled>
-              <el-collapse-item title="Clinica Centro" name="1">
+              <el-collapse-item title="CLÍNICA CENTRO" name="1">
               </el-collapse-item>
             </el-collapse>
           </template>
@@ -131,7 +141,7 @@
         <el-table-column>
           <template slot="header" slot-scope="scope">
             <el-collapse @change="handleChange" disabled>
-              <el-collapse-item title="Clinica Norte" name="2">
+              <el-collapse-item title="CLÍNICO NORTE" name="2">
               </el-collapse-item>
             </el-collapse>
           </template>
